@@ -4,7 +4,7 @@ import datetime
 
 
 class Scientist(models.Model):
-    name = models.CharField(max_length=128, db_index=True, unique=True, verbose_name='ФИО')
+    name = models.CharField(max_length=128, unique=True, verbose_name='ФИО')
     short_description = models.TextField(max_length=512, verbose_name='Краткое описание')
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
     photo = models.ImageField(upload_to='photos/scientists', verbose_name='Фото', blank=True)
@@ -31,7 +31,7 @@ class Scientist(models.Model):
 
 
 class Organization(models.Model):
-    name = models.CharField(max_length=128, db_index=True, unique=True, verbose_name='Название')
+    name = models.CharField(max_length=128, unique=True, verbose_name='Название')
     short_description = models.TextField(max_length=512, verbose_name='Краткое описание')
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
     logo = models.ImageField(upload_to='photos/organizations', verbose_name='Логотип', blank=True)
@@ -58,7 +58,7 @@ class Organization(models.Model):
 
 
 class Invention(models.Model):
-    title = models.CharField(max_length=128, db_index=True, unique=True, verbose_name='Название')
+    title = models.CharField(max_length=128, unique=True, verbose_name='Название')
     short_description = models.TextField(max_length=512, verbose_name='Краткое описание')
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
     photo = models.ImageField(upload_to='photos/inventions', verbose_name='Фото', blank=True)
@@ -80,7 +80,7 @@ class Invention(models.Model):
 
 
 class Year(models.Model):
-    year = models.IntegerField(verbose_name='Год', db_index=True,  unique=True,
+    year = models.IntegerField(verbose_name='Год',  unique=True,
                                validators=[MinValueValidator(1830), MaxValueValidator(datetime.date.today().year)])
 
     def __str__(self):
