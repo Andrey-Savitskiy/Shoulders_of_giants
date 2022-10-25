@@ -4,17 +4,21 @@ import datetime
 
 
 class Scientist(models.Model):
-    name = models.CharField(max_length=128, unique=True, verbose_name='ФИО')
+    full_name = models.CharField(max_length=128, unique=True, verbose_name='ФИО')
+    short_name = models.CharField(max_length=32, verbose_name='Сокращенное ФИО')
     short_description = models.TextField(max_length=512, verbose_name='Краткое описание')
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
-    photo = models.ImageField(upload_to='photos/scientists', verbose_name='Фото', blank=True)
-    life_years = models.CharField(max_length=16, verbose_name='Годы жизни',
-                                  validators=[RegexValidator(r'[0-9]{4}-[0-9]{4}')])
+    photo = models.ImageField(upload_to='img/scientists',
+                              verbose_name='Фото')
+    life_years = models.CharField(max_length=21, verbose_name='Годы жизни',
+                                  validators=[RegexValidator(r'[0-9]{2}.[0-9]{2}.[0-9]{4}-[0-9]{2}.[0-9]{2}.[0-9]{4}|'
+                                                             r'[0-9]{2}.[0-9]{2}.[0-9]{4}')])
 
     start_year = models.ForeignKey('Year', null=True, on_delete=models.PROTECT,
                                    related_name='scientist_start_year', verbose_name='Год рождения')
     end_year = models.ForeignKey('Year', null=True, on_delete=models.PROTECT,
-                                 related_name='scientist_end_year', verbose_name='Год смерти')
+                                 related_name='scientist_end_year', verbose_name='Год смерти',
+                                 default=datetime.date.today().year)
 
     invention = models.ManyToManyField('Invention', blank=True,
                                        related_name='scientist_invention', verbose_name='Изобретение')
@@ -22,20 +26,22 @@ class Scientist(models.Model):
                                        related_name='scientist_organization', verbose_name='Организация')
 
     def __str__(self):
-        return self.name
+        return self.full_name
 
     class Meta:
         verbose_name = 'Ученый'
         verbose_name_plural = 'Ученые'
-        ordering = ['name']
+        ordering = ['full_name']
 
 
 class Organization(models.Model):
-    name = models.CharField(max_length=128, unique=True, verbose_name='Название')
+    full_name = models.CharField(max_length=128, unique=True, verbose_name='Название')
+    short_name = models.CharField(max_length=32, verbose_name='Сокращенное название')
     short_description = models.TextField(max_length=512, verbose_name='Краткое описание')
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
-    logo = models.ImageField(upload_to='photos/organizations', verbose_name='Логотип', blank=True)
-    history = models.CharField(max_length=8192, verbose_name='История')
+    logo = models.ImageField(upload_to='img/organizations',
+                             verbose_name='Логотип')
+    history = models.TextField(max_length=8192, verbose_name='История')
 
     start_year = models.ForeignKey('Year', null=True, on_delete=models.PROTECT,
                                    related_name='organization_start_year', verbose_name='Год создания')
@@ -49,19 +55,21 @@ class Organization(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.full_name
 
     class Meta:
         verbose_name = 'Организация'
         verbose_name_plural = 'Организации'
-        ordering = ['name']
+        ordering = ['full_name']
 
 
 class Invention(models.Model):
-    title = models.CharField(max_length=128, unique=True, verbose_name='Название')
+    full_title = models.CharField(max_length=128, unique=True, verbose_name='Название')
+    short_title = models.CharField(max_length=32, verbose_name='Сокращенное название')
     short_description = models.TextField(max_length=512, verbose_name='Краткое описание')
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
-    photo = models.ImageField(upload_to='photos/inventions', verbose_name='Фото', blank=True)
+    photo = models.ImageField(upload_to='img/inventions',
+                              verbose_name='Фото')
 
     year = models.ForeignKey('Year', null=True, on_delete=models.PROTECT, verbose_name='Год создания')
 
@@ -71,12 +79,12 @@ class Invention(models.Model):
                                        related_name='invention_scientist', verbose_name='Ученый')
 
     def __str__(self):
-        return self.title
+        return self.full_title
 
     class Meta:
         verbose_name = 'Изобретение'
         verbose_name_plural = 'Изобретения'
-        ordering = ['title']
+        ordering = ['full_title']
 
 
 class Year(models.Model):

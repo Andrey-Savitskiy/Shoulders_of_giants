@@ -7,10 +7,10 @@ from .models import *
 
 
 class ScientistAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'life_years']
-    list_display_links = ['id', 'name']
-    search_fields = ['name']
-    list_filter = ['name']
+    list_display = ['id', 'full_name', 'life_years']
+    list_display_links = ['id', 'full_name']
+    search_fields = ['full_name']
+    list_filter = ['full_name']
     # inlines = [ScientistInline]
 
 
@@ -19,10 +19,10 @@ class ScientistAdmin(admin.ModelAdmin):
 
 
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name']
-    list_display_links = ['id', 'name']
-    search_fields = ['name']
-    list_filter = ['name']
+    list_display = ['id', 'full_name']
+    list_display_links = ['id', 'full_name']
+    search_fields = ['full_name']
+    list_filter = ['full_name']
     # inlines = [OrganizationInline]
 
 
@@ -31,10 +31,10 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 
 class InventionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'year']
-    list_display_links = ['id', 'title']
-    search_fields = ['title']
-    list_filter = ['title', 'year']
+    list_display = ['id', 'full_title', 'year']
+    list_display_links = ['id', 'full_title']
+    search_fields = ['full_title']
+    list_filter = ['full_title', 'year']
     # inlines = [InventionInline]
 
 
