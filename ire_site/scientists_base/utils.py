@@ -1,5 +1,9 @@
 def get_coordinates(alpha: int, start_top: int, start_left: int,
                     new_top: int, new_left: int, radius: int, delta: int) -> tuple:
+
+    start_top += delta
+    start_left += delta
+
     if alpha < 90:
         return (start_left + new_left, start_top - new_top)
     elif alpha == 90:
