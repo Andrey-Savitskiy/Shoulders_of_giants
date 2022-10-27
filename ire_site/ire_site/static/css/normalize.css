@@ -8,9 +8,16 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
- html {
+html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 /* Sections
@@ -40,6 +47,15 @@ main {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+}
+
+p, h1, h2, h3, h4, figure, ul, ol, div {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
 }
 
 /* Grouping content
@@ -75,6 +91,12 @@ pre {
 
 a {
   background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
 }
 
 /**

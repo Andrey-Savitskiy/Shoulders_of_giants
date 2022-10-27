@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="{% static 'css/scientists_graph.css' %}">
 </head>
 <body style="background-color: gray">
-    <a href="#" class="scientist absolute" style="top: {{ scientist.top }}px; left: {{ scientist.left }}px">
-        <h3 class="scientist-card-title">{{ scientist.object.short_name }}</h3>
+    <a href="#" class="first_object scientist absolute" style="top: {{ first_object.top }}px; left: {{ first_object.left }}px">
+        <h3 class="scientist-card-title">{{ first_object.object.short_name }}</h3>
         <figure class="scientist-line"></figure>
-        <img class="scientist-photo" src="{{ scientist.object.photo.url }}" alt="{{ scientist.object.full_name }}">
+        <img class="scientist-photo" src="{{ first_object.object.photo.url }}" alt="{{ first_object.object.full_name }}">
     </a>
 
     <ul>
-        {% for invention in invention_list %}
-            <li class="absolute" style="top: {{ invention.top }}px; left: {{ invention.left }}px">
-                <a href="#" class="invention">
-                    <h3 class="invention-card-title">{{ invention.object.short_title }}</h3>
+        {% for second_object in second_object_list %}
+            <li class="absolute" style="top: {{ second_object.top }}px; left: {{ second_object.left }}px">
+                <a href="#" class="second_object invention">
+                    <h3 class="invention-card-title">{{ second_object.object.short_title }}</h3>
                     <figure class="invention-line"></figure>
-                    <img class="invention-photo" src="{{ invention.object.photo.url }}" alt="{{ invention.object.full_title }}">
+                    <img class="invention-photo" src="{{ second_object.object.photo.url }}" alt="{{ second_object.object.full_title }}">
                 </a>
             </li>
         {% endfor %}
@@ -34,11 +34,11 @@
     <script>
         let canvas = document.getElementById('draw-line');
         let ctx = canvas.getContext('2d');
-        let scientist_left = 200/2 + {{ scientist.left }};
-        let scientist_top = 200/2 + {{ scientist.top }};
+        let first_object_left = 200 / 2 + {{ first_object.left }};
+        let first_object_top = 200 / 2 + {{ first_object.top }};
 
         for (coordinate of ({{ coordinates_list }})) {
-            ctx.moveTo(scientist_left, scientist_top);
+            ctx.moveTo(first_object_left, first_object_top);
             ctx.lineTo(coordinate[0], coordinate[1]);
             ctx.strokeStyle = "#FF8016";
             ctx.lineWidth = "3";

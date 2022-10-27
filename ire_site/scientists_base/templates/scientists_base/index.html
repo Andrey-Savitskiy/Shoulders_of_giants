@@ -1,36 +1,69 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-{#    <canvas id="graph" width="2000" height="1000" style="background-color: antiquewhite"></canvas>#}
-{#    <script>#}
-{#        var canvas = document.getElementById('graph');#}
-{#        var ctx = canvas.getContext('2d');#}
-{##}
-{#        ctx.beginPath();#}
-{#        ctx.strokeStyle = 'orange';#}
-{#        ctx.lineWidth = 5;#}
-{#        ctx.arc(900, 500, 100, 0, 2 * Math.PI);#}
-{#        ctx.stroke();#}
-{#    </script>#}
 
-    <div style="margin: 0 auto; width: 100%; height: 100%; background-color: antiquewhite;">
-
-        <figure style="width: 200px; height: 200px; background: orange; border-radius: 50%;
-        margin: 6% 50%; text-align: center; font-size: 100px; position: absolute;">окб</figure>
-
-        <ul style="list-style: none">
-            {% for organization in organization_list %}
-                <li class="organization-item ">
-                    <figure style="width: 150px; height: 150px; background: orange; border-radius: 50%;
-                    margin: auto; text-align: center; font-size: 40px">ИСЗ “Молния”</figure>
-                </li>
-            {% endfor %}
-        </ul>
+{% block header %}
+    <div class="header-container flex">
+        <img class="logo" src="{% static 'images/logo.svg' %}" alt="Логотип">
+        <div>
+            <div class="flex nav-content">
+                <div class="header-headers">
+                    <h1 class="header-first">На Плечах Гигантов</h1>
+                    <h2 class="header-second">Живая летопись отрасли</h2>
+                </div>
+                <nav>
+                    <ul class="flex">
+                        <li class="nav-bar-item">
+                            <form action="/ire/contacts" method="get">
+                                <button class="nav-button" type="submit">Контакты</button>
+                            </form>
+                        </li>
+                        <li class="nav-bar-item">
+                            <form action="/ire/about_us" method="get">
+                                <button class="nav-button" type="submit">О нас</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <hr class="header-line">
+            <p class="header-paragraph">Проект Института радиотехники и электроники имени В.А. Котельникова</p>
+        </div>
     </div>
-</body>
-</html>
+{% endblock %}
+
+
+{% block main %}
+    <nav class="main-nav flex">
+        <h3 class="header-third inline-block">{% block header_name %}404{% endblock %}</h3>
+{#        <select class="js-chosen" name="city">#}
+{#            <label></label>#}
+{#            <optgroup label="Ученые">#}
+{#                <option>PHP</option>#}
+{#                <option>CSS</option>#}
+{#                <option>HTML</option>#}
+{#                <option>CSS 3</option>#}
+{#                <option>Bootstrap</option>#}
+{#                <option>JavaScript</option>#}
+{#            </optgroup>#}
+{#            <optgroup label="Организации">#}
+{#                <option>Java</option>#}
+{#                <option>C#</option>#}
+{#                <option>Python</option>#}
+{#            </optgroup>#}
+{#            <optgroup label="Разработки">#}
+{#                <option>1</option>#}
+{#                <option>2</option>#}
+{#                <option>3</option>#}
+{#            </optgroup>#}
+{#        </select>#}
+    </nav>
+{% endblock %}
+
+
+{% block footer %}
+    <div class="footer-container">
+        <hr class="footer-line">
+        <p class="signature">© 2022. Разработано кафедрой РТС МЭИ</p>
+    </div>
+{% endblock %}

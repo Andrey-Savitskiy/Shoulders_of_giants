@@ -1,0 +1,137 @@
+
+
+.header-container {
+    padding-top: 25px;
+    padding-left: 50px;
+    background-color: #1D1D1D;
+}
+
+.logo {
+    width: 106px;
+    height: 88px;
+    margin: 0 14px 11px 0;
+}
+
+.header-first {
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #FF8016;
+}
+
+.header-second {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #FFF;
+}
+
+.header-headers {
+    margin-bottom: 11px;
+    margin-right: auto;
+}
+
+.header-paragraph {
+    margin-bottom: 9px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    color: #FFF;
+}
+
+.nav-content {
+    justify-content: right;
+}
+
+.nav-bar-item:nth-last-child(n+2) {
+    margin-right: 26px;
+}
+
+.nav-bar-item:nth-last-child(1) {
+    margin-right: 20px;
+}
+
+.header-line {
+    margin: 0;
+    margin-bottom: 11px;
+    width: 1025px;
+	height: 2px;
+	border: none;
+	background-color: #FF8016;
+}
+
+.nav-button {
+    border: none;
+    width: 99px;
+    height: 39px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFF;
+    background: #FF8016;
+    border-radius: 2px 15px;
+}
+
+/*main*/
+
+.main-nav {
+}
+
+.header-third {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+
+    min-width: 170px;
+    margin-left: 80px;
+    padding: 9px 9px 13px 9px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFF;
+    background-color: #FF8016;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.select {
+    width: 265px;
+    height: 45px;
+    margin-right: 80px;
+    margin-left: auto;
+    padding-left: 50px;
+    background: #FF8016;
+    border: 1px solid #938E94;
+    border-radius: 0 0 8px 8px;
+    background-image: url("../images/search.svg"), url("../images/line.svg");
+    background-repeat: no-repeat, no-repeat;
+    background-position: 10px center, 44px center;
+}
+
+/*footer*/
+
+.footer-container {
+    padding-bottom: 86px;
+}
+
+.footer-line {
+    width: 1120px;
+    margin: 0 auto 36px auto;
+    height: 3px;
+	border: none;
+    border-radius: 100px;
+	background-color: #FF8016;
+}
+
+.signature {
+    margin-right: 96px;
+    text-align: right;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFF;
+}
+

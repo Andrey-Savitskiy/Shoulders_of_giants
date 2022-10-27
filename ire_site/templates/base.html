@@ -1,0 +1,32 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>На плечах гигантов</title>
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% block links %}{% endblock %}
+</head>
+
+<body>
+<div class="body-container">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+
+    <main>
+        {% block main %}{% endblock %}
+        {% block contect %}{% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}{% endblock %}
+    </footer>
+</div>
+</body>
+</html>

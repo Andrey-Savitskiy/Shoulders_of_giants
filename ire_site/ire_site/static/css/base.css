@@ -1,0 +1,25 @@
+body {
+    font-family: 'Raleway', Arial, sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.inline {
+    display: inline;
+}
+
+.body-container {
+    width: 1280px;
+    margin: 0 auto;
+    background-color: #2E2E2D;
+}
