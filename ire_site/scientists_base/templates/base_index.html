@@ -36,28 +36,10 @@
 {% block main %}
     <nav class="main-nav flex">
         <h3 class="header-third inline-block">{% block header_name %}404{% endblock %}</h3>
-{#        <select class="js-chosen" name="city">#}
-{#            <label></label>#}
-{#            <optgroup label="Ученые">#}
-{#                <option>PHP</option>#}
-{#                <option>CSS</option>#}
-{#                <option>HTML</option>#}
-{#                <option>CSS 3</option>#}
-{#                <option>Bootstrap</option>#}
-{#                <option>JavaScript</option>#}
-{#            </optgroup>#}
-{#            <optgroup label="Организации">#}
-{#                <option>Java</option>#}
-{#                <option>C#</option>#}
-{#                <option>Python</option>#}
-{#            </optgroup>#}
-{#            <optgroup label="Разработки">#}
-{#                <option>1</option>#}
-{#                <option>2</option>#}
-{#                <option>3</option>#}
-{#            </optgroup>#}
-{#        </select>#}
     </nav>
+
+    {% block content %}{% endblock %}
+
 {% endblock %}
 
 

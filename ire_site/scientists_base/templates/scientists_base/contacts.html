@@ -1,0 +1,67 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+{% endblock %}
+
+
+{% block header_name %}
+    {{ header_name }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+    <p class="contacts-text">
+        Наша база с каждым днем все больше совершенствуется! <br><br>
+        Вы можете предложить новую информацию, для внесения ее в базу данных, и помочь сделать проект ещё лучше!
+    </p>
+
+    <hr class="separator">
+
+    <h4 class="four-header">Наши контакты:</h4>
+
+    <ul class="all-contacts">
+        <li class="all-contacts-item">
+            <p>
+                <span class="orange">e-mail:</span>
+                <span>Na.Plechah.Gigantov@yandex.ru</span>
+            </p>
+        </li>
+        <li class="all-contacts-item">
+            <p>
+                <span class="orange">Telegram-канал:</span>
+                <span>@</span>
+            </p>
+        </li>
+        <li class="all-contacts-item">
+            <p>
+                <span class="orange">Telegram-бот:</span>
+                <span>@</span>
+            </p>
+        </li>
+    </ul>
+
+    <h5 class="five-header">Контакты руководителя проекта:</h5>
+    <ul class="local-contacts">
+        <li class="local-contacts-item">
+            <p>Владислав Тома</p>
+        </li>
+        <li class="local-contacts-item">
+            <p>
+                <span class="orange">e-mail:</span>
+                <span>fell78.toma@yandex.ru</span>
+            </p>
+        </li>
+        <li class="local-contacts-item">
+            <p>
+                <span class="orange">Telegram:</span>
+                <span>@Tom0025</span>
+            </p>
+        </li>
+    </ul>
+</div>
+{% endblock %}

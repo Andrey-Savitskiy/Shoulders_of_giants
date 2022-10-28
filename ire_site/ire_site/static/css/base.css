@@ -1,5 +1,6 @@
 body {
     font-family: 'Raleway', Arial, sans-serif;
+    background-color: #3E3E3D;
 }
 
 .flex {
@@ -22,4 +23,9 @@ body {
     width: 1280px;
     margin: 0 auto;
     background-color: #2E2E2D;
+}
+
+.main-container {
+    min-height: 700px;
+    padding: 0 120px 120px 90px;
 }

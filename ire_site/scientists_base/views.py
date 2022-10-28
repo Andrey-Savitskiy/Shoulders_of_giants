@@ -3,12 +3,35 @@ from django.shortcuts import render
 from .utils import *
 
 
-def index(request):
-    return render(request, 'scientists_base/index.html')
+def page_not_found(request, exception):
+    return render(request, '404.html', status=404)
 
 
 def about_us(request):
-    return render(request, 'scientists_base/about_us.html')
+    context = {
+        'header_name': 'О нас'
+    }
+    return render(request, 'scientists_base/about_us.html', context)
+
+
+def contacts(request):
+    context = {
+        'header_name': 'Контакты'
+    }
+    return render(request, 'scientists_base/contacts.html', context)
+
+
+def scientist(request, scientist_id):
+    scientist = Scientist.objects.get(id=scientist_id)
+    invention_list = Invention.objects.filter(scientist=scientist)
+    organization_list = Organization.objects.filter(scientist=scientist)
+
+    context = {
+        'scientist': scientist,
+        'invention_list': invention_list,
+        'organization_list': organization_list,
+    }
+    return render(request, 'scientists_base/scientist.html', context)
 
 
 def scientists_graph(request):

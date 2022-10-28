@@ -1,0 +1,74 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/scientist.css' %}">
+{% endblock %}
+
+
+{% block header_name %}Исследователи{% endblock %}
+
+
+{% block content %}
+    <div class="scientist-header flex">
+        <img  class="scientist-header-img" src="{{ scientist.photo.url }}" alt="{{ scientist.full_name }}">
+        <div class="scientist-description">
+            <div class="scientist-name flex">
+                <h4 class="four-header">{{ scientist.full_name }}</h4>
+                <p class="scientist-years">({{ scientist.start_year }} - {{ scientist.end_year }})</p>
+            </div>
+
+            <hr class="scientist-line">
+            <p class="scientist-text">— {{ scientist.short_description }}</p>
+        </div>
+    </div>
+        <hr class="scientist-line">
+
+        <div class="scientist-organizations">
+            <h5 class="five-header">Организации</h5>
+            <ul class="scientist-organizations-list flex">
+                {% for organization in organization_list %}
+                    <li class="scientist-organizations-item inline-block">
+                        <a href="/organization/{{ organization.id }}">
+                            <h3 class="organization-card-title">{{ organization.short_name }}</h3>
+                            <img class="organization-photo" src="{{ organization.logo.url }}"
+                                 alt="{{ organization.full_name }}">
+                        </a>
+                    </li>
+                {% endfor %}
+{#                {% for organization in organization_list %}#}
+{#                    <li class="scientist-organizations-item">#}
+{#                        <a href="/organization/{{ organization.id }}">#}
+{#                            <h3 class="organization-card-title">{{ organization.short_name }}</h3>#}
+{#                            <img class="organization-photo" src="{{ organization.logo.url }}"#}
+{#                                 alt="{{ organization.full_name }}">#}
+{#                        </a>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+            </ul>
+        </div>
+        <hr class="scientist-line">
+
+        <div class="scientist-inventions">
+            <h5 class="five-header">Разработки</h5>
+            <ul class="scientist-invention-list flex">
+                {% for invention in invention_list %}
+                    <li class="scientist-inventions-item">
+                        <a href="/invention/{{ invention.id }}">
+                            <h3 class="inventions-card-title">{{ invention.short_title }}</h3>
+                            <figure class="invention-line"></figure>
+                            <img class="inventions-photo" src="{{ invention.photo.url }}"
+                                 alt="{{ invention.full_title }}">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr class="scientist-line">
+
+        <div class="scientist-biography">
+            <h5 class="five-header biography">Биография</h5>
+            <p class="scientist-text">{{ scientist.full_description|linebreaksbr }}</p>
+        </div>
+{% endblock %}

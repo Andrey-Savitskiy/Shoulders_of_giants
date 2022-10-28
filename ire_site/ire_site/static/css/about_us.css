@@ -1,0 +1,48 @@
+.about_us-text {
+  font: inherit;
+  margin: 0;
+  margin-bottom: 50px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fff;
+}
+
+.separator {
+  width: 432px;
+  margin: 0;
+  margin-bottom: 50px;
+  height: 3px;
+  border: none;
+  border-radius: 100px;
+  background-color: #FF8016;
+}
+
+.four-header {
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF8016;
+}
+
+.orange {
+  color: #FF8016;
+}
+
+.boss {
+  margin-bottom: 30px;
+  color: #FFF;
+}
+
+.boss-text:nth-last-child(n+2) {
+  margin-bottom: 4px;
+}
+
+.team {
+  color: #FFF;
+}
+
+.team-item:nth-last-child(n+2) {
+  margin-bottom: 6px;
+}
