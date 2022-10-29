@@ -66,7 +66,9 @@
 .scientist-invention-list {
     padding-left: 40px;
     padding-bottom: 40px;
-    overflow-x: scroll;
+    overflow-x: auto;
+    scrollbar-face-color: #FF8016;
+
 }
 
 .scientist-organizations-item {

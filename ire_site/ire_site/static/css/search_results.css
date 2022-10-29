@@ -1,0 +1,23 @@
+.search-container {
+    justify-content: space-between;
+}
+
+.four-header {
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FF8016;
+}
+
+.search-item {
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFF;
+}
+
+.search-item:nth-last-child(n+2) {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,60 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/search_results.css' %}">
+{% endblock %}
+
+
+{% block header_name %}Результаты поиска{% endblock %}
+
+
+{% block content %}
+    <div class="search-container flex">
+        {% if scientist_list %}
+            <div class="search-container-scientist">
+                <h4 class="four-header">Ученые:</h4>
+                <ul>
+                    {% for scientist in scientist_list %}
+                        <li class="search-item">
+                            <a href="{% url 'scientists_graph' scientist_id=scientist.id %}" class="search-link">
+                                {{ scientist.full_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+{#        {% if organization_list %}#}
+{#            <div class="search-container-organization">#}
+{#                <h4 class="four-header">Организации:</h4>#}
+{#                <ul>#}
+{#                    {% for organization in organization_list %}#}
+{#                        <li class="search-item">#}
+{#                            <a href="{% url 'organizations_graph' organization_id=organization.id %}" class="search-link">#}
+{#                                {{ organization.full_name }}#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    {% endfor %}#}
+{#                </ul>#}
+{#            </div>#}
+{#        {% endif %}#}
+
+        {% if invention_list %}
+            <div class="search-container-invention">
+                <h4 class="four-header">Изобретения:</h4>
+                <ul>
+                    {% for invention in invention_list %}
+                        <li class="search-item">
+                            <a href="{% url 'inventions_graph' invention_id=invention.id %}" class="search-link">
+                                {{ invention.full_title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

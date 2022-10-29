@@ -35,7 +35,17 @@
 
 {% block main %}
     <nav class="main-nav flex">
-        <h3 class="header-third inline-block">{% block header_name %}404{% endblock %}</h3>
+        <h3 class="header-third">{% block header_name %}404{% endblock %}</h3>
+
+        <form class="search-form flex" action="{% url 'search' %}" method="get">
+            <button class="search-form-button" type="submit" value="Найти...">
+                <img src="{% static 'images/search.svg' %}" alt="Лупа поиска">
+            </button>
+            <figure class="search-line"></figure>
+            <label for="search" class="search-label">
+                <input class="search-input" type="search" name="q" placeholder="Поиск по базе">
+            </label>
+        </form>
     </nav>
 
     {% block content %}{% endblock %}
