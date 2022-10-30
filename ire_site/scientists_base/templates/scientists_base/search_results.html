@@ -27,20 +27,20 @@
             </div>
         {% endif %}
 
-{#        {% if organization_list %}#}
-{#            <div class="search-container-organization">#}
-{#                <h4 class="four-header">Организации:</h4>#}
-{#                <ul>#}
-{#                    {% for organization in organization_list %}#}
-{#                        <li class="search-item">#}
-{#                            <a href="{% url 'organizations_graph' organization_id=organization.id %}" class="search-link">#}
-{#                                {{ organization.full_name }}#}
-{#                            </a>#}
-{#                        </li>#}
-{#                    {% endfor %}#}
-{#                </ul>#}
-{#            </div>#}
-{#        {% endif %}#}
+        {% if organization_list %}
+            <div class="search-container-organization">
+                <h4 class="four-header">Организации:</h4>
+                <ul>
+                    {% for organization in organization_list %}
+                        <li class="search-item">
+                            <a href="{% url 'organizations_graph' organization_id=organization.id %}" class="search-link">
+                                {{ organization.full_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
         {% if invention_list %}
             <div class="search-container-invention">

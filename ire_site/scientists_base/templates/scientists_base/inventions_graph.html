@@ -1,18 +1,14 @@
+{% extends 'base_index.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-    <link rel="stylesheet" href="{% static 'css/inventions_graph.css' %}">
-</head>
-<body style="background-color: gray">
-    <a href="#" class="first_object invention absolute" style="top: {{ first_object.top }}px; left: {{ first_object.left }}px; opacity:0.3;">
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/inventions_graph.css' %}">
+{% endblock %}
+
+{% block header_name %}Разработки{% endblock %}
+
+{% block content %}
+    <a href="{% url 'invention' invention_id=first_object.object.id %}" class="first_object invention absolute" style="top: {{ first_object.top }}px; left: {{ first_object.left }}px; opacity:0.3;">
         <h3 class="invention-card-title">{{ first_object.object.short_title  }}</h3>
         <figure class="invention-line"></figure>
         <img class="invention-photo" src="{{ first_object.object.photo.url }}" alt="{{ first_object.object.full_title }}">
@@ -21,7 +17,7 @@
     <ul>
         {% for second_object in second_object_list %}
             <li class="absolute" style="top: {{ second_object.top }}px; left: {{ second_object.left }}px; opacity:0.3;">
-                <a href="#" class="second_object scientist">
+                <a href="{% url 'scientist' scientist_id=second_object.object.id %}" class="second_object scientist">
                     <h3 class="scientist-card-title">{{ second_object.object.short_name }}</h3>
                     <figure class="scientist-line"></figure>
                     <img class="scientist-photo" src="{{ second_object.object.photo.url }}" alt="{{ second_object.object.full_name }}">
@@ -33,7 +29,7 @@
     <ul>
         {% for third_object in third_object_result %}
             <li class="absolute" style="top: {{ third_object.top }}px; left: {{ third_object.left }}px; opacity:0.3;">
-                <a href="#" class="third_object invention">
+                <a href="{% url 'organization' organization_id=third_object.object.id %}" class="third_object invention">
                     <h3 class="organization-card-title">{{ third_object.object.short_name }}</h3>
                     <img class="organization-photo" src="{{ third_object.object.logo.url }}" alt="{{ third_object.object.full_name }}">
                 </a>
@@ -41,17 +37,16 @@
         {% endfor %}
     </ul>
 
-    <canvas id="draw-line" width="2000" height="2000"></canvas>
     <script>
         let canvas = document.getElementById('draw-line');
         let ctx = canvas.getContext('2d');
         let first_object_left = 200 / 2 + {{ first_object.left }};
-        let first_object_top = 200 / 2 + {{ first_object.top }};
+        let first_object_top = 200 / 2 + {{ first_object.top }} - 200;
 
         for (coordinate of {{ first_coordinates_list }}) {
             ctx.beginPath();
             ctx.moveTo(first_object_left, first_object_top);
-            ctx.lineTo(coordinate[0], coordinate[1]);
+            ctx.lineTo(coordinate[0], coordinate[1] - 200);
             ctx.strokeStyle = "#FF8016";
             ctx.lineWidth = "3";
             ctx.stroke();
@@ -63,12 +58,15 @@
             const coefficient_third = 150 / 2
             console.log(coordinate)
             ctx.beginPath();
-            ctx.moveTo(coefficient_second + coordinate[2], coefficient_second + coordinate[3]);
-            ctx.lineTo(coefficient_third + coordinate[1], coefficient_third + coordinate[0]);
+            ctx.moveTo(coefficient_second + coordinate[2], coefficient_second + coordinate[3] - 200);
+            ctx.lineTo(coefficient_third + coordinate[1], coefficient_third + coordinate[0] - 200);
             ctx.strokeStyle = "#FFF";
             ctx.lineWidth = "3";
             ctx.stroke();
         }
     </script>
-</body>
-</html>
+{% endblock %}
+
+{% block canvas %}
+<canvas id="draw-line" width="3000" height="1500" class="absolute" style="margin: 200px 0"></canvas>
+{% endblock %}

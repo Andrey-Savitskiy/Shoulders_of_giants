@@ -1,35 +1,3 @@
-html {
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-a {
-    color: inherit;
-	text-decoration: none;
-}
-
-img {
-    max-width: 100%;
-}
-
-body {
-    font-family: 'Raleway', Arial, sans-serif;
-}
-
-p, h1, h2, h3, h4, figure, ul, ol, div {
-    margin: 0;
-    padding: 0;
-}
-
-ul, ol {
-    list-style: none;
-}
-
 .first_object {
 	width: 200px;
 	height: 200px;

@@ -10,9 +10,10 @@ class Scientist(models.Model):
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
     photo = models.ImageField(upload_to='img/scientists',
                               verbose_name='Фото')
-    life_years = models.CharField(max_length=21, verbose_name='Годы жизни',
-                                  validators=[RegexValidator(r'[0-9]{2}.[0-9]{2}.[0-9]{4}-[0-9]{2}.[0-9]{2}.[0-9]{4}|'
-                                                             r'[0-9]{2}.[0-9]{2}.[0-9]{4}')])
+    # biography = models.TextField(max_length=8192, verbose_name='Биография')
+    # life_years = models.CharField(max_length=21, verbose_name='Годы жизни',
+    #                               validators=[RegexValidator(r'[0-9]{2}.[0-9]{2}.[0-9]{4}-[0-9]{2}.[0-9]{2}.[0-9]{4}|'
+    #                                                          r'[0-9]{2}.[0-9]{2}.[0-9]{4}')])
 
     start_year = models.ForeignKey('Year', null=True, on_delete=models.PROTECT,
                                    related_name='scientist_start_year', verbose_name='Год рождения')
@@ -70,6 +71,7 @@ class Invention(models.Model):
     full_description = models.TextField(max_length=8192, verbose_name='Полное описание')
     photo = models.ImageField(upload_to='img/inventions',
                               verbose_name='Фото')
+    # history = models.TextField(max_length=8192, verbose_name='История')
 
     year = models.ForeignKey('Year', null=True, on_delete=models.PROTECT, verbose_name='Год создания')
 

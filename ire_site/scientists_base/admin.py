@@ -7,7 +7,7 @@ from .models import *
 
 
 class ScientistAdmin(admin.ModelAdmin):
-    list_display = ['id', 'full_name', 'life_years']
+    list_display = ['id', 'full_name']
     list_display_links = ['id', 'full_name']
     search_fields = ['full_name']
     list_filter = ['full_name']

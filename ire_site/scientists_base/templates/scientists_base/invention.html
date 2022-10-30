@@ -1,0 +1,65 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/invention.css' %}">
+{% endblock %}
+
+
+{% block header_name %}Исследователи{% endblock %}
+
+
+{% block content %}
+<div class="invention-header flex">
+    <img  class="invention-header-img" src="{{ invention.photo.url }}" alt="{{ invention.full_title }}">
+    <div class="invention-description">
+        <div class="invention-name flex">
+            <h4 class="four-header">{{ invention.full_title }}</h4>
+            <p class="invention-years">({{ invention.year }})</p>
+        </div>
+
+        <hr class="invention-line">
+        <p class="invention-text">— {{ invention.short_description }}</p>
+    </div>
+</div>
+<hr class="invention-line">
+
+<div class="invention-organizations">
+    <h5 class="five-header">Организации</h5>
+    <ul class="invention-organizations-list flex scroll">
+        {% for organization in organization_list %}
+        <li class="invention-organizations-item">
+            <a href="{% url 'organization' organization_id=organization.id %}">
+                <h3 class="organization-card-title">{{ organization.short_name }}</h3>
+                <img class="organization-photo" src="{{ organization.logo.url }}"
+                     alt="{{ organization.full_name }}">
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<hr class="invention-line">
+
+<div class="scientist-inventions">
+    <h5 class="five-header">Исследователи</h5>
+    <ul class="scientist-invention-list flex scroll">
+        {% for scientist in scientist_list %}
+        <li class="scientist-inventions-item">
+            <a href="{% url 'scientist' scientist_id=scientist.id %}" class="flex">
+                <h3 class="scientist-card-title">{{ scientist.short_name }}</h3>
+                <figure class="scientist-line"></figure>
+                <img class="inventions-photo" src="{{ scientist.photo.url }}"
+                     alt="{{ scientist.full_title }}">
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<hr class="invention-line">
+
+<div class="invention-biography">
+    <h5 class="five-header biography">История</h5>
+    <p class="invention-text">{{ invention.full_description|linebreaksbr }}</p>
+</div>
+{% endblock %}

@@ -1,26 +1,3 @@
-
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-a {
-    color: inherit;
-	text-decoration: none;
-}
-
-img {
-    max-width: 100%;
-}
-
-body {
-    font-family: 'Raleway', Arial, sans-serif;
-}
-
-
-
 .first_object {
 	width: 200px;
 	height: 200px;

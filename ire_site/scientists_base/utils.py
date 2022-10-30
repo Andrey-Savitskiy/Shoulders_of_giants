@@ -1,10 +1,12 @@
 import math
 from .models import *
 
-CENTER_TOP = 500
-CENTER_LEFT = 700
-RADIUS = 200
+CENTER_TOP = 700
+CENTER_LEFT = 1000
+
+RADIUS = 230
 FULL_ALPHA = 360
+DELTA_ALPHA = 30
 
 SIZE_DELTA = round((200 - 178) / 2)
 SIZE_DELTA_THIRD = round((200 - 150) / 2)
@@ -15,6 +17,7 @@ def get_coordinates(alpha: int, start_top: int, start_left: int,
                     new_top: int, new_left: int, radius: int, delta: int) -> tuple:
     start_top += delta
     start_left += delta
+    alpha %= FULL_ALPHA
 
     if alpha < 90:
         return (start_left + new_left, start_top - new_top)
@@ -47,8 +50,12 @@ def get_second_object_list(second_object_list):
     second_object_result = []
     coordinates_list = []
     size_second_object_list = len(second_object_list)
+
+    if not size_second_object_list:
+        return second_object_result, coordinates_list
+
     alpha = FULL_ALPHA // size_second_object_list
-    now_alpha = alpha
+    now_alpha = alpha + DELTA_ALPHA
 
     radius = round(RADIUS * (1 + 0.1 * size_second_object_list))
 
@@ -75,8 +82,12 @@ def get_third_object_list(third_object_list, second_object_result):
     coordinates_list = []
 
     size_third_object_list = len(third_object_list)
+
+    if not size_third_object_list:
+        return list(third_object_result.values()), coordinates_list
+
     alpha = FULL_ALPHA // size_third_object_list
-    now_alpha = alpha
+    now_alpha = alpha + DELTA_ALPHA * 2
     radius = round(1.1 * RADIUS * (1 + 0.5 * size_third_object_list))
 
     for third_object in third_object_list:

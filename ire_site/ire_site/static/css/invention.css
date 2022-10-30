@@ -1,14 +1,14 @@
-.scientist-header {
+.invention-header {
     padding-left: 40px;
     margin-bottom: 30px;
 }
 
-.scientist-header-img {
+.invention-header-img {
     max-width: 150px;
     margin-right: 30px;
 }
 
-.scientist-name {
+.invention-name {
     margin: 15px 0 30px;
 }
 
@@ -31,14 +31,14 @@
     color: #FF8016;
 }
 
-.scientist-years {
+.invention-years {
     font-weight: 400;
     font-size: 24px;
     line-height: 20px;
     color: #FF8016;
 }
 
-.scientist-line {
+.invention-line {
     width: 100%;
     margin: 0;
     margin-bottom: 25px;
@@ -49,21 +49,21 @@
     background-color: #FF8016;
 }
 
-.scientist-text {
+.invention-text {
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
     color: #FFF;
 }
 
-.scientist-organizations,
-.scientist-inventions,
+.invention-organizations,
+.invention-inventions,
 .biography {
     padding-left: 30px;
 }
 
-.scientist-organizations-list,
-.scientist-invention-list {
+.invention-organizations-list,
+.invention-invention-list {
     padding-left: 40px;
     padding-bottom: 40px;
     overflow-x: auto;
@@ -71,7 +71,7 @@
 
 }
 
-.scientist-organizations-item {
+.invention-organizations-item {
     border-radius: 40px;
 	border: 2px solid #FFF;
 	width: 175px;
@@ -110,18 +110,20 @@
 	background: #2E2E2D;
 }
 
-.inventions-card-title {
-	width: 100%;
-	min-height: 20px;
-	margin: 20px 0 15px;
+.scientist-card-title {
+	width: 2em;
+	height: 100%;
+	margin-left: 15px;
 	text-align: center;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 20px;
 	color: #FFF;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
 }
 
-.invention-line {
+.scientist-line {
 	background: #FFF;
 	height: 2px;
 	width: 100%;
