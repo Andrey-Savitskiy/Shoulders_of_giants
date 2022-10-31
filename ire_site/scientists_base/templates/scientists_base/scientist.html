@@ -7,7 +7,7 @@
 {% endblock %}
 
 
-{% block header_name %}Исследователи{% endblock %}
+{% block header_name %}Исследователь{% endblock %}
 
 
 {% block content %}
@@ -60,6 +60,6 @@
 
         <div class="scientist-biography">
             <h5 class="five-header biography">Биография</h5>
-            <p class="scientist-text">{{ scientist.full_description|linebreaksbr }}</p>
+            <p class="scientist-text">{{ scientist.biography|linebreaksbr }}</p>
         </div>
 {% endblock %}

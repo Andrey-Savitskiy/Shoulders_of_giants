@@ -1,12 +1,15 @@
 import math
+import random
+
 from .models import *
 
 CENTER_TOP = 700
 CENTER_LEFT = 1000
 
-RADIUS = 230
+RADIUS = 170
 FULL_ALPHA = 360
-DELTA_ALPHA = 30
+DELTA_ALPHA = 200
+DELTA_ALPHA_SECOND = 60
 
 SIZE_DELTA = round((200 - 178) / 2)
 SIZE_DELTA_THIRD = round((200 - 150) / 2)
@@ -46,7 +49,7 @@ def get_first_object(first_object) -> dict:
     return first_object_result
 
 
-def get_second_object_list(second_object_list):
+def get_second_object_list(second_object_list, type):
     second_object_result = []
     coordinates_list = []
     size_second_object_list = len(second_object_list)
@@ -55,9 +58,12 @@ def get_second_object_list(second_object_list):
         return second_object_result, coordinates_list
 
     alpha = FULL_ALPHA // size_second_object_list
-    now_alpha = alpha + DELTA_ALPHA
+    now_alpha = alpha + random.randint(10, 15) + DELTA_ALPHA
 
-    radius = round(RADIUS * (1 + 0.1 * size_second_object_list))
+    if type == 'organization':
+        radius = round((RADIUS * 1.7) * (size_second_object_list))
+    else:
+        radius = round((RADIUS * 1.5) * (1 + 0.1 * size_second_object_list))
 
     for second_object in second_object_list:
         rad_alpha = math.radians(now_alpha)
@@ -72,12 +78,12 @@ def get_second_object_list(second_object_list):
             'left': coordinates[0],
         })
         coordinates_list.append(list(x + CENTER_DELTA for x in coordinates))
-        now_alpha += alpha
+        now_alpha += alpha + random.randint(10, 15)
 
     return second_object_result, coordinates_list
 
 
-def get_third_object_list(third_object_list, second_object_result):
+def get_third_object_list(third_object_list, second_object_result, type):
     third_object_result = {}
     coordinates_list = []
 
@@ -87,13 +93,19 @@ def get_third_object_list(third_object_list, second_object_result):
         return list(third_object_result.values()), coordinates_list
 
     alpha = FULL_ALPHA // size_third_object_list
-    now_alpha = alpha + DELTA_ALPHA * 2
-    radius = round(1.1 * RADIUS * (1 + 0.5 * size_third_object_list))
+    now_alpha = alpha + random.randint(10, 15) + DELTA_ALPHA_SECOND
+    if type == 'organization':
+        radius = round(RADIUS * 0.6 * (size_third_object_list))
+    else:
+        radius = round(1.1 * (RADIUS * 1.3) * (1 + 0.8 * size_third_object_list))
 
     for third_object in third_object_list:
         for second_object in second_object_result:
-            result = Organization.objects.filter(pk=third_object.id).filter(scientist=second_object['object'])
-            print(result)
+            if type == 'invention':
+                result = Organization.objects.filter(pk=third_object.id).filter(scientist=second_object['object'])
+            else:
+                result = Organization.objects.filter(pk=third_object.id).filter(invention=second_object['object'])
+
             if result:
                 if not third_object.id in third_object_result.keys():
                     print(alpha)
@@ -119,6 +131,6 @@ def get_third_object_list(third_object_list, second_object_result):
                     coordinates_list.append([third_object_result[third_object.id]['top'],
                                              third_object_result[third_object.id]['left'],
                                              second_object['left'], second_object['top']])
-                now_alpha += alpha
+                now_alpha += alpha + random.randint(10, 15)
 
     return list(third_object_result.values()), coordinates_list

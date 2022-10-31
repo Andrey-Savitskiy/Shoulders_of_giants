@@ -3,37 +3,38 @@
 
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'css/invention.css' %}">
+    <link rel="stylesheet" href="{% static 'css/organization.css'   %}">
 {% endblock %}
 
 
-{% block header_name %}Разработка{% endblock %}
+{% block header_name %}Организация{% endblock %}
 
 
 {% block content %}
     <div class="scientist-header flex">
-        <img  class="scientist-header-img" src="{{ invention.photo.url }}" alt="{{ invention.full_title }}">
+        <img  class="scientist-header-img" src="{{ organization.logo.url }}" alt="{{ organization.full_name }}">
         <div class="scientist-description">
             <div class="scientist-name flex">
-                <h4 class="four-header">{{ invention.full_title }}</h4>
-                <p class="scientist-years">({{ invention.year }})</p>
+                <h4 class="four-header">{{ organization.full_name }}</h4>
+                <p class="scientist-years">({{ organization.start_year }} - {{ organization.end_year }})</p>
             </div>
 
             <hr class="scientist-line">
-            <p class="scientist-text">— {{ invention.short_description }}</p>
+            <p class="scientist-text">— {{ organization.short_description }}</p>
         </div>
     </div>
         <hr class="scientist-line">
 
         <div class="scientist-organizations">
-            <h5 class="five-header">Организации</h5>
+            <h5 class="five-header">Разработки</h5>
             <ul class="scientist-organizations-list flex scroll">
-                {% for organization in organization_list %}
+                {% for invention in invention_list %}
                     <li class="scientist-organizations-item">
-                        <a href="{% url 'organization' organization_id=organization.id %}">
-                            <h3 class="organization-card-title">{{ organization.short_name }}</h3>
-                            <img class="organization-photo" src="{{ organization.logo.url }}"
-                                 alt="{{ organization.full_name }}">
+                        <a href="{% url 'invention' invention_id=invention.id %}">
+                            <h3 class="organization-card-title">{{ invention.short_title }}</h3>
+                            <figure class="organization-line"></figure>
+                            <img class="organization-photo" src="{{ invention.photo.url }}"
+                                 alt="{{ invention.full_title }}">
                         </a>
                     </li>
                 {% endfor %}
@@ -60,6 +61,6 @@
 
         <div class="scientist-biography">
             <h5 class="five-header biography">История</h5>
-            <p class="scientist-text">{{ invention.history|linebreaksbr }}</p>
+            <p class="scientist-text">{{ organization.history|linebreaksbr }}</p>
         </div>
 {% endblock %}

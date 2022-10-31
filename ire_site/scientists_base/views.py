@@ -25,18 +25,18 @@ def contacts(request):
 def search(request):
     search_query = SearchQuery(request.GET.get('q'))
     search_vector = SearchVector("full_name", "short_name")
-    search_vector_organization = SearchVector("full_title", "short_title")
+    search_vector_invention = SearchVector("full_title", "short_title")
 
     scientist_list = Scientist.objects.annotate(
                         search=search_vector, rank=SearchRank(search_vector, search_query)
                         ).filter(search=search_query)
 
     invention_list = Invention.objects.annotate(
-                        search=search_vector, rank=SearchRank(search_vector, search_query)
+                        search=search_vector_invention, rank=SearchRank(search_vector_invention, search_query)
                         ).filter(search=search_query)
 
     organization_list = Organization.objects.annotate(
-                        search=search_vector_organization, rank=SearchRank(search_vector, search_query)
+                        search=search_vector, rank=SearchRank(search_vector, search_query)
                         ).filter(search=search_query)
 
     if scientist_list or invention_list or organization_list:
@@ -99,7 +99,7 @@ def scientists_graph(request, scientist_id):
     first_object_result = get_first_object(first_object)
 
     second_object = Invention.objects.filter(scientist=first_object)
-    second_object_result, coordinates_list = get_second_object_list(second_object)
+    second_object_result, coordinates_list = get_second_object_list(second_object, 'scientist')
 
     context = {
         'first_object': first_object_result,
@@ -114,12 +114,10 @@ def inventions_graph(request, invention_id):
     first_object_result = get_first_object(first_object)
 
     second_object_list = Scientist.objects.filter(invention=first_object)
-    second_object_result, first_coordinates_list = get_second_object_list(second_object_list)
-    print(second_object_list)
+    second_object_result, first_coordinates_list = get_second_object_list(second_object_list, 'invention')
 
     third_object_list = Organization.objects.filter(invention=first_object)
-    third_object_result, second_coordinates_list = get_third_object_list(third_object_list, second_object_result)
-    print(second_coordinates_list)
+    third_object_result, second_coordinates_list = get_third_object_list(third_object_list, second_object_result, 'invention')
 
     context = {
         'first_object': first_object_result,
@@ -130,3 +128,24 @@ def inventions_graph(request, invention_id):
     }
 
     return render(request, 'scientists_base/inventions_graph.html', context)
+
+
+def organizations_graph(request, organization_id):
+    first_object = Organization.objects.get(id=organization_id)
+    first_object_result = get_first_object(first_object)
+
+    second_object_list = Invention.objects.filter(organization=first_object)
+    second_object_result, first_coordinates_list = get_second_object_list(second_object_list, 'organization')
+
+    third_object_list = Scientist.objects.filter(organization=first_object)
+    third_object_result, second_coordinates_list = get_third_object_list(third_object_list, second_object_result, 'organization')
+
+    context = {
+        'first_object': first_object_result,
+        'second_object_list': second_object_result,
+        'first_coordinates_list': first_coordinates_list,
+        'second_coordinates_list': second_coordinates_list,
+        'third_object_result': third_object_result,
+    }
+
+    return render(request, 'scientists_base/organizations_graph.html', context)

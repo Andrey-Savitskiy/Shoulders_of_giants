@@ -14,7 +14,7 @@ urlpatterns = [
 
     path('scientists_graph/<int:scientist_id>/', scientists_graph, name='scientists_graph'),
     path('inventions_graph/<int:invention_id>/', inventions_graph, name='inventions_graph'),
-    # path('organizations_graph/<int:organization_id>/', organizations_graph, name='organizations_graph'),
+    path('organizations_graph/<int:organization_id>/', organizations_graph, name='organizations_graph'),
 ]
 
 handler404 = 'scientists_base.views.page_not_found'
