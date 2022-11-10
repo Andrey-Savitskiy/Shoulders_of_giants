@@ -21,3 +21,8 @@
 .search-item:nth-last-child(n+2) {
     margin-bottom: 10px;
 }
+
+.search-link:hover,
+.search-link:active {
+    box-shadow: 0 0 5px #FFF;
+}

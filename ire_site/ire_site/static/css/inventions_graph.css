@@ -6,6 +6,15 @@
 	background: #2E2E2D;
 }
 
+.first_object:hover,
+.first_object:active,
+.second_object:hover,
+.second_object:active,
+.second_object:hover,
+.second_object:active {
+	box-shadow: 0 0 20px #FFF;
+}
+
 .second_object {
 	border-radius: 33px;
 	border: 2px solid #FFF;

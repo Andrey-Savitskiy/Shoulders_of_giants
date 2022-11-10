@@ -3,8 +3,8 @@ import random
 
 from .models import *
 
-CENTER_TOP = 700
-CENTER_LEFT = 1000
+CENTER_TOP = 500
+CENTER_LEFT = 810
 
 RADIUS = 170
 FULL_ALPHA = 360
@@ -61,7 +61,8 @@ def get_second_object_list(second_object_list, type):
     now_alpha = alpha + random.randint(10, 15) + DELTA_ALPHA
 
     if type == 'organization':
-        radius = round((RADIUS * 1.7) * (size_second_object_list))
+        # radius = round((RADIUS * 1.7) * (size_second_object_list))
+        radius = round((RADIUS * 1.5) * (1 + 0.1 * size_second_object_list))
     else:
         radius = round((RADIUS * 1.5) * (1 + 0.1 * size_second_object_list))
 
@@ -97,7 +98,8 @@ def get_third_object_list(third_object_list, second_object_result, type):
     if type == 'organization':
         radius = round(RADIUS * 0.6 * (size_third_object_list))
     else:
-        radius = round(1.1 * (RADIUS * 1.3) * (1 + 0.8 * size_third_object_list))
+        radius = round(1.1 * (RADIUS * 1.1) * (1 + 0.5 * size_third_object_list))
+
 
     for third_object in third_object_list:
         for second_object in second_object_result:

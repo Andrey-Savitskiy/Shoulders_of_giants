@@ -8,7 +8,7 @@
 {% block header_name %}Исследователи{% endblock %}
 
 {% block content %}
-    <a href="{% url 'scientist' scientist_id=first_object.object.id %}" class="first_object scientist absolute" style="opacity:0.3;top: {{ first_object.top }}px; left: {{ first_object.left }}px">
+    <a href="{% url 'scientist' scientist_id=first_object.object.id %}" class="first_object scientist absolute" style="top: {{ first_object.top }}px; left: {{ first_object.left }}px">
         <h3 class="scientist-card-title">{{ first_object.object.short_name }}</h3>
         <figure class="scientist-line"></figure>
         <img class="scientist-photo" src="{{ first_object.object.photo.url }}" alt="{{ first_object.object.full_name }}">
@@ -16,7 +16,7 @@
 
     <ul>
         {% for second_object in second_object_list %}
-            <li class="absolute" style="top: {{ second_object.top }}px; left: {{ second_object.left }}px; opacity:0.3">
+            <li class="absolute" style="top: {{ second_object.top }}px; left: {{ second_object.left }}px;">
                 <a href="{% url 'invention' invention_id=second_object.object.id %}" class="second_object invention">
                     <h3 class="invention-card-title">{{ second_object.object.short_title }}</h3>
                     <figure class="invention-line"></figure>

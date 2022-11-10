@@ -8,6 +8,7 @@
 
 .help-button{
   border-radius: 2px 20px;
+  border: 0;
   width: 376px;
   height: 50px;
   font-weight: 500;
@@ -15,4 +16,11 @@
   line-height: 20px;
   color: #fff;
   background: #FF8016;
+}
+
+.help-button:hover,
+.help-button:active {
+    background-color: #FFF;
+    color: #FF8016;
+    cursor: pointer;
 }

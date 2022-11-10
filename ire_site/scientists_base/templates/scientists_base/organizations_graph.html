@@ -8,14 +8,14 @@
 {% block header_name %}Организации{% endblock %}
 
 {% block content %}
-    <a href="{% url 'organization' organization_id=first_object.object.id %}" class="first_object organization absolute" style="top: {{ first_object.top }}px; left: {{ first_object.left }}px; opacity:0.3;">
+    <a href="{% url 'organization' organization_id=first_object.object.id %}" class="first_object organization absolute" style="top: {{ first_object.top }}px; left: {{ first_object.left }}px;">
         <h3 class="organization-card-title">{{ first_object.object.short_name  }}</h3>
         <img class="organization-photo" src="{{ first_object.object.logo.url }}" alt="{{ first_object.object.full_name }}">
     </a>
 
     <ul>
         {% for second_object in second_object_list %}
-            <li class="absolute" style="top: {{ second_object.top }}px; left: {{ second_object.left }}px; opacity:0.3;">
+            <li class="absolute" style="top: {{ second_object.top }}px; left: {{ second_object.left }}px;">
                 <a href="{% url 'invention' invention_id=second_object.object.id %}" class="second_object invention">
                     <h3 class="invention-card-title">{{ second_object.object.short_title }}</h3>
                     <figure class="invention-line"></figure>
@@ -27,7 +27,7 @@
 
     <ul>
         {% for third_object in third_object_result %}
-            <li class="absolute" style="top: {{ third_object.top }}px; left: {{ third_object.left }}px; opacity:0.3;">
+            <li class="absolute" style="top: {{ third_object.top }}px; left: {{ third_object.left }}px;">
                 <a href="{% url 'scientist' scientist_id=third_object.object.id %}" class="third_object scientist">
                     <h3 class="scientist-card-title">{{ third_object.object.short_name }}</h3>
                     <figure class="scientist-line"></figure>

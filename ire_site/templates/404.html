@@ -4,16 +4,65 @@
 
 {% block links %}
     <link rel="stylesheet" href="{% static 'css/404.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search_results.css' %}">
 {% endblock %}
 
 
-{% block content %}<
+{% block content %}
     <p class="error">
         Ой, кажется тут код 404. <br>
         Этих данных пока что нет в нашей базе. <br>
         <br>
         Вы можете помочь нам заполнить пробелы и сделать проект ещё лучше!
     </p>
+
+    <p class="four-header">Имеющиеся данные в нашей базе:</p>
+    <div class="search-container flex">
+        {% if scientist_list %}
+            <div class="search-container-scientist">
+                <h4 class="four-header">Ученые:</h4>
+                <ul>
+                    {% for scientist in scientist_list %}
+                        <li class="search-item">
+                            <a href="{% url 'scientists_graph' scientist_id=scientist.id %}" class="search-link">
+                                {{ scientist.short_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if organization_list %}
+            <div class="search-container-organization">
+                <h4 class="four-header">Организации:</h4>
+                <ul>
+                    {% for organization in organization_list %}
+                        <li class="search-item">
+                            <a href="{% url 'organizations_graph' organization_id=organization.id %}" class="search-link">
+                                {{ organization.short_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if invention_list %}
+            <div class="search-container-invention">
+                <h4 class="four-header">Изобретения:</h4>
+                <ul>
+                    {% for invention in invention_list %}
+                        <li class="search-item">
+                            <a href="{% url 'inventions_graph' invention_id=invention.id %}" class="search-link">
+                                {{ invention.short_title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 
     <form action="/ire/contacts" method="get">
         <button class="help-button" type="submit">Как с нами связаться</button>
