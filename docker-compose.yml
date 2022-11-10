@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  django_scientist_base:
+    image: postgres
+    restart: always
+    container_name: ${POSTGRES_HOST}
+    links:
+      - django_web
+    env_file:
+      - .env
+
+  django_web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: django_web
+    container_name: django_web
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - 8000:8000
+    working_dir: /ire_site
