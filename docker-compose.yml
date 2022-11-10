@@ -17,6 +17,11 @@ services:
       dockerfile: Dockerfile
     image: django_web
     container_name: django_web
+    command: bash -c "
+      python manage.py makemigrations
+      && python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000
+      "
     env_file:
       - .env
     restart: always
